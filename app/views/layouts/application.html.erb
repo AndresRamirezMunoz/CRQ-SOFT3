@@ -5,12 +5,85 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
   </head>
-
   <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container-fluid">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+          <% unless signed_in? %>
+            <a class="navbar-brand" href="#">CRQ</a>
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" href="#">Inicio</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" href="#">Porque reciclar</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" href="#">Quiero reciclar</a>
+              </li>
+            </ul>
+          <% else %>
+            <a class="navbar-brand" href="#">Panel Admin</a>
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" href="#">Registros</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" href="#">Citas</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" href="#"></a>
+              </li>
+            </ul>
+            <!---->
+            <a class="navbar-brand" href="#">Panel Usuario</a>
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" href="#">WIP</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" href="#">WIP</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" href="#">WIP</a>
+              </li>
+            </ul>
+          <% end %>
+          <form class="d-flex">
+            <!--
+            <%= link_to new_user_session_path, class: "link" do %>
+              <i class="fas fa-user fa-lg text-white"></i>
+            <% end %>
+          -->
+            <% if signed_in? %>
+              <%= link_to destroy_user_session_path, method: :delete, class: "link" do %>
+                <i class="fas fa-user-times fa-lg text-white"></i><strong class="text-white">&nbsp;Cerrar sesión</strong><br>
+              <% end %>
+            <% else %>
+              <%= link_to new_user_session_path, class: "link" do %>
+                <i class="fas fa-sign-in-alt fa-lg text-white"></i><strong class="text-white">&nbsp;Iniciar sesión</strong><br>
+              <% end %>
+              <!--
+              <%= link_to new_user_registration_path, class: "link" do %>
+                <i class="fas fa-user-plus fa-lg text-white"></i><strong class="text-white">&nbsp;Sing up</strong><br>
+              <% end%>
+              -->
+            <% end %>
+            &nbsp
+            &nbsp
+            &nbsp
+          </form>
+        </div>
+      </div>
+    </nav>
     <%= yield %>
   </body>
 </html>
