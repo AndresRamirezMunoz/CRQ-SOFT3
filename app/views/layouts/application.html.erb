@@ -18,44 +18,47 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
           <% unless signed_in? %>
-            <a class="navbar-brand" href="#">CRQ</a>
+            <a class="navbar-brand" href="/">CRQ</a>
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <li class="nav-item">
-                <a class="nav-link active" href="#">Inicio</a>
+                <a class="nav-link active" href="/">Inicio</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link active" href="#">Porque reciclar</a>
+                <a class="nav-link active" href="/">Porque reciclar</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link active" href="#">Quiero reciclar</a>
+                <a class="nav-link active" href="/">Quiero reciclar</a>
               </li>
             </ul>
           <% else %>
-            <a class="navbar-brand" href="#">Panel Admin</a>
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              <li class="nav-item">
-                <a class="nav-link active" href="#">Registros</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link active" href="#">Citas</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link active" href="#"></a>
-              </li>
-            </ul>
-            <!---->
-            <a class="navbar-brand" href="#">Panel Usuario</a>
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              <li class="nav-item">
-                <a class="nav-link active" href="#">WIP</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link active" href="#">WIP</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link active" href="#">WIP</a>
-              </li>
-            </ul>
+            <% if current_user.has_role? :admin %>
+              <a class="navbar-brand" href="#">Panel Admin</a>
+              <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                  <a class="nav-link active" href="#">Registros</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link active" href="#">Citas</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link active" href="#">Dashboard</a>
+                </li>
+              </ul>
+              <!---->
+            <% else %>
+              <a class="navbar-brand" href="#">Panel Usuario</a>
+              <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                  <a class="nav-link active" href="#">Mis aportes</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link active" href="#">Agendar</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link active" href="#">Config</a>
+                </li>
+              </ul>
+            <% end %>
           <% end %>
           <form class="d-flex">
             <!--
