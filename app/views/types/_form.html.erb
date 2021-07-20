@@ -1,0 +1,19 @@
+<%= form_with model: @type do |form| %>
+  <div class="form-group">
+    <%= form.label :name, "Nombre:"%>
+    <div class="col-md-12">
+      <%= form.text_field :name, class: "form-control" %>
+    </div>
+  </div>
+  <br>
+  <!---->
+  <div class="row">
+    <div class="col-md-12 text-center">
+      <% if @type.name? %>
+        <%= form.submit "Actualizar ", class: "btn btn-default btn-secondary" %>
+      <% else %>
+        <%= form.submit "Crear ", class: "btn btn-default btn-secondary" %>
+      <% end %>
+    </div>
+  </div>
+<% end %>

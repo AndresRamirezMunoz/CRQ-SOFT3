@@ -35,10 +35,29 @@
               <a class="navbar-brand" href="#">Panel Admin</a>
               <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                  <a class="nav-link active" href="#">Registros</a>
+                  <%= link_to types_path, class: "link" do %>
+                    <p class="text-white">Recuperadores &nbsp;&nbsp;</p>
+                  <% end %>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link active" href="#">Citas</a>
+                  <%= link_to types_path, class: "link" do %>
+                    <p class="text-white">Compradores &nbsp;&nbsp;</p>
+                  <% end %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to types_path, class: "link" do %>
+                    <p class="text-white">Reciclaje &nbsp;&nbsp;</p>
+                  <% end %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to types_path, class: "link" do %>
+                    <p class="text-white">Materiales &nbsp;&nbsp;</p>
+                  <% end %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to appointments_path, class: "link" do %>
+                    <p class="text-white">Citas &nbsp;&nbsp;</p>
+                  <% end %>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link active" href="#">Dashboard</a>
