@@ -1,0 +1,15 @@
+<h4>Tipos</h4>
+<%= link_to new_type_path, class: "link" do %>
+  <p class="">Nuevo&nbsp;&nbsp;</p>
+<% end %>
+<!---->
+<% @types.each do |type| %>
+  <p>
+    Nombre: <%= type.name %>,
+    Actualizado el : <%= type.updated_at %>,
+    <%= link_to edit_type_path(type), class: "link" do %>
+      <p class="">Editar&nbsp;&nbsp;</p>
+    <% end %>
+    <hr>
+  </p>
+<% end %>
