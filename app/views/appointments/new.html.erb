@@ -1,0 +1,53 @@
+<div class="album py-5 bg-light">
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <div class="card mb-4 box-shadow">
+          <br>
+          <div class="card-body">
+            <div class="container">
+              <%= form_with model: @appointment do |form| %>
+                <div class="form-group">
+                  <%= form.label :name, "Nombre:"%>
+                  <div class="col-md-12">
+                    <%= form.text_field :name, class: "form-control" %>
+                  </div>
+                </div>
+                <br>
+                <!---->
+                <div class="form-group">
+                  <%= form.label :adress, "Direccion:"%>
+                  <div class="col-md-12">
+                    <%= form.text_field :adress, class: "form-control" %>
+                  </div>
+                </div>
+                <br>
+                <!---->
+                <div class="form-group">
+                  <%= form.label :phone, "Telefono:"%>
+                  <div class="col-md-12">
+                    <%= form.text_field :phone, class: "form-control" %>
+                  </div>
+                </div>
+                <br>
+                <!---->
+                <div class="col-md-12">
+                  <p>Tipo de material</p>
+                  <%= form.select :type, options_from_collection_for_select(@types, :id, :name, "0"),{},
+                  { class: "form-select form-select-sm" }  %>
+                </div>
+                <br>
+                <!---->
+                <div class="row">
+                  <div class="col-md-12 text-center">
+                    <%= form.submit "Create ", class: "btn btn-default btn-secondary" %>
+                  </div>
+                </div>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

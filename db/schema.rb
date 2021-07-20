@@ -10,7 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_14_203127) do
+ActiveRecord::Schema.define(version: 2021_07_15_023412) do
+
+  create_table "appointments", force: :cascade do |t|
+    t.string "name"
+    t.string "adress"
+    t.string "phone"
+    t.datetime "date"
+    t.boolean "athonme"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "user_id", null: false
+    t.integer "type_id", null: false
+    t.index ["type_id"], name: "index_appointments_on_type_id"
+    t.index ["user_id"], name: "index_appointments_on_user_id"
+  end
 
   create_table "roles", force: :cascade do |t|
     t.string "name"
@@ -23,6 +37,12 @@ ActiveRecord::Schema.define(version: 2021_07_14_203127) do
     t.index ["resource_type", "resource_id"], name: "index_roles_on_resource"
   end
 
+  create_table "types", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -31,6 +51,9 @@ ActiveRecord::Schema.define(version: 2021_07_14_203127) do
     t.datetime "remember_created_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "name"
+    t.string "adress"
+    t.string "phone"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
@@ -43,4 +66,6 @@ ActiveRecord::Schema.define(version: 2021_07_14_203127) do
     t.index ["user_id"], name: "index_users_roles_on_user_id"
   end
 
+  add_foreign_key "appointments", "types"
+  add_foreign_key "appointments", "users"
 end

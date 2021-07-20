@@ -49,13 +49,17 @@
               <a class="navbar-brand" href="#">Panel Usuario</a>
               <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                  <a class="nav-link active" href="#">Mis aportes</a>
+                  <%= link_to user_appointment_path(current_user), class: "link" do %>
+                    <p class="text-white">Mis aportes &nbsp;&nbsp;</p>
+                  <% end %>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link active" href="#">Agendar</a>
+                  <%= link_to new_appointment_path, class: "link" do %>
+                    <p class="text-white">Agendar&nbsp;&nbsp;</p>
+                  <% end %>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link active" href="#">Config</a>
+                  <p class="text-white">Config</p>
                 </li>
               </ul>
             <% end %>

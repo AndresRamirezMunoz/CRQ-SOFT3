@@ -1,0 +1,13 @@
+<h4>Usuario: <%=current_user.email %></h4>
+<p>Numero de citas: <%= @appointments.count %></p>
+<% @appointments.each do |appointment| %>
+  <p>
+    <strong>Citas:</strong>
+    Nombre: <%= appointment.name %>,
+    Direccion: <%= appointment.adress %>,
+    Telefono: <%= appointment.phone %>,
+    tipo:  <%= appointment.type.name %>,
+    Fecha: <%= appointment.date %>,
+    Recogido: <%= appointment.athonme %>
+  </p>
+<% end %>
