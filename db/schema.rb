@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_21_005408) do
+ActiveRecord::Schema.define(version: 2021_07_21_031255) do
 
   create_table "appointments", force: :cascade do |t|
     t.string "name"
@@ -20,8 +20,12 @@ ActiveRecord::Schema.define(version: 2021_07_21_005408) do
     t.boolean "athonme"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "user_id", null: false
     t.integer "type_id", null: false
+    t.integer "recuperator_id", null: false
+    t.index ["recuperator_id"], name: "index_appointments_on_recuperator_id"
     t.index ["type_id"], name: "index_appointments_on_type_id"
+    t.index ["user_id"], name: "index_appointments_on_user_id"
   end
 
   create_table "buyers", force: :cascade do |t|
@@ -82,5 +86,7 @@ ActiveRecord::Schema.define(version: 2021_07_21_005408) do
     t.index ["user_id"], name: "index_users_roles_on_user_id"
   end
 
+  add_foreign_key "appointments", "recuperators"
   add_foreign_key "appointments", "types"
+  add_foreign_key "appointments", "users"
 end
