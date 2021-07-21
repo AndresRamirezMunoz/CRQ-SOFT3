@@ -16,7 +16,33 @@ class AppointmentsController < ApplicationController
     @appointment = Appointment.new
   end
 
+  def update_athome
+    appointment = Appointment.find(params[:id])
+    appointment.athonme = true
+
+    if appointment.save
+      redirect_to appointments_path
+    else
+      redirect_to appointments_path
+    end
+  end
+
+  def update
+    recuperator = Recuperator.find(appointment_params[:recuperator])
+    appointment = Appointment.find(params[:id])
+
+    if(recuperator!= Recuperator.first)
+      appointment.recuperator = recuperator
+      appointment.save
+      redirect_to appointments_path
+    else
+      redirect_to appointments_path
+    end
+  end
+
   def create
+    puts "_" * 40
+    puts appointment_params
     @appointment = Appointment.new
     @appointment.name = appointment_params[:name]
     @appointment.adress = appointment_params[:adress]
@@ -25,9 +51,9 @@ class AppointmentsController < ApplicationController
     @appointment.athonme = false
     @appointment.date = Time.now
     @appointment.user = current_user
+    @appointment.recuperator = Recuperator.first
 
     if @appointment.save
-
       redirect_to user_appointment_path(current_user)
     else
       render :new
@@ -37,6 +63,6 @@ class AppointmentsController < ApplicationController
   private
 
   def appointment_params
-    params.require(:appointment).permit(:name, :adress, :phone, :date, :athonme, :type)
+    params.require(:appointment).permit(:name, :adress, :phone, :date, :athonme, :type, :recuperator)
   end
 end

@@ -33,7 +33,7 @@
                 <!---->
                 <div class="col-md-12">
                   <p>Tipo de material</p>
-                  <%= form.select :type, options_from_collection_for_select(@types, :id, :name, "0"),{},
+                  <%= form.select :type, options_from_collection_for_select(Type.all, :id, :name, "0"),{},
                   { class: "form-select form-select-sm" }  %>
                 </div>
                 <br>

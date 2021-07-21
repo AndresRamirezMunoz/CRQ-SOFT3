@@ -1,4 +1,4 @@
-<h4>Citas</h4>
+<h4>Citas: <%= current_user.name %></h4>
 <p>Numero de citas: <%= @appointments.count %></p>
 <% @appointments.each do |appointment| %>
   <p>
@@ -8,6 +8,18 @@
     Telefono: <%= appointment.phone %>,
     tipo:  <%= appointment.type.name %>,
     Fecha: <%= appointment.date %>,
-    Recogido: <%= appointment.athonme %>
+    Recogido: <%= appointment.athonme %>,
+    Recuperador: <%= appointment.recuperator.fullname %>
+    <% unless appointment.athonme  %>
+      <%= form_with model: appointment do |form| %>
+        <p>Recolector</p>
+        <%= form.select :recuperator, options_from_collection_for_select(Recuperator.all, :id, :fullname, "0"),{},
+                  { class: ""  }  %>
+        <br>
+        <%= form.submit "Asignar ", class: "" %>
+      <% end %>
+      <%= link_to "Confirmar recoleccion", admin_update_athome_path(appointment), method: :patch, data: { confirm: "¿Estas seguro?" } %>
+    <% end%>
   </p>
+  <hr>
 <% end %>

@@ -11,23 +11,23 @@
     Dirección: <%= recuperator.adress%>
     Activo: <%= recuperator.active%>
   </p>
-    <ul>
-      <li>
-        <%= link_to edit_recuperator_path(recuperator), class: "link" do %>
-          <p class="">Editar&nbsp;&nbsp;</p>
-        <% end %>
-      </li>
-      <li>
+  <ul>
+    <li>
+      <%= link_to edit_recuperator_path(recuperator), class: "link" do %>
+        <p class="">Editar&nbsp;&nbsp;</p>
+      <% end %>
+    </li>
+    <li>
       <% if recuperator.active %>
-        <%= link_to [recuperator], method: :delete, data: { confirm: "Are you sure?" } do%>
+        <%= link_to [recuperator], method: :delete, data: { confirm: "¿Estas seguro?" } do%>
           <p>Desactivar</p>
         <% end %>
       <% else %>
-        <%= link_to [recuperator], method: :delete, data: { confirm: "Are you sure?" } do%>
+        <%= link_to [recuperator], method: :delete, data: { confirm: "¿Estas seguro?" } do%>
           <p>Activar</p>
         <% end %>
       <% end %>
-      </li>
-    </ul>
-    <hr>
+    </li>
+  </ul>
+  <hr>
 <% end %>
