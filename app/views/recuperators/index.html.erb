@@ -1,0 +1,33 @@
+<h4>Recuperadores</h4>
+<%= link_to new_recuperator_path, class: "link" do %>
+  <p class="">Nuevo&nbsp;&nbsp;</p>
+<% end %>
+<!---->
+<% @recuperators.each do |recuperator| %>
+  <p>
+    Cédula: <%= recuperator.nit %>,
+    Nombre: <%= recuperator.fullname %>,
+    Teléfono: <%= recuperator.phone %>,
+    Dirección: <%= recuperator.adress%>
+    Activo: <%= recuperator.active%>
+  </p>
+    <ul>
+      <li>
+        <%= link_to edit_recuperator_path(recuperator), class: "link" do %>
+          <p class="">Editar&nbsp;&nbsp;</p>
+        <% end %>
+      </li>
+      <li>
+      <% if recuperator.active %>
+        <%= link_to [recuperator], method: :delete, data: { confirm: "Are you sure?" } do%>
+          <p>Desactivar</p>
+        <% end %>
+      <% else %>
+        <%= link_to [recuperator], method: :delete, data: { confirm: "Are you sure?" } do%>
+          <p>Activar</p>
+        <% end %>
+      <% end %>
+      </li>
+    </ul>
+    <hr>
+<% end %>
