@@ -1,0 +1,16 @@
+<h4>Reciclaje</h4>
+<%= link_to new_recycle_path, class: "link" do %>
+  <p class="">Nuevo&nbsp;&nbsp;</p>
+<% end %>
+<!---->
+<% @recycles.each do |recycle| %>
+  <p>
+    Peso: <%= recycle.weight %>,
+    Tipo: <%= recycle.type.name %>,
+    Recuperador : <%= recycle.recuperator.fullname %>
+    <%= link_to edit_recycle_path(recycle), class: "link" do %>
+      <p class="">Editar&nbsp;&nbsp;</p>
+    <% end %>
+    <hr>
+  </p>
+<% end %>

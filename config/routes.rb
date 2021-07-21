@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   resources :types
   resources :recuperators
   resources :buyers
+  resources :recycles
 
   get '/user_appointment/:id' => 'appointments#show_by_user', as: :user_appointment
   patch '/appointments/:id/update-athome' => 'appointments#update_athome', as: :admin_update_athome
