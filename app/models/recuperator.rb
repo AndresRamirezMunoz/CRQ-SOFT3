@@ -1,0 +1,2 @@
+class Recuperator < ApplicationRecord
+end
