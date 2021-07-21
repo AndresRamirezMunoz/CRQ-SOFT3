@@ -1,0 +1,20 @@
+<h4>Compradores</h4>
+<%= link_to new_buyer_path, class: "link" do %>
+  <p class="">Nuevo&nbsp;&nbsp;</p>
+<% end %>
+<!---->
+<% @buyers.each do |buyer| %>
+  <p>
+    Nombre: <%= buyer.name %>,
+    Teléfono: <%= buyer.phone %>,
+    Dirección: <%= buyer.adress%>
+  </p>
+  <ul>
+    <li>
+      <%= link_to edit_buyer_path(buyer), class: "link" do %>
+        <p class="">Editar&nbsp;&nbsp;</p>
+      <% end %>
+    </li>
+  </ul>
+  <hr>
+<% end %>
