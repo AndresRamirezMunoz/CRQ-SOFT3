@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_21_070045) do
+ActiveRecord::Schema.define(version: 2021_07_25_032712) do
 
   create_table "appointments", force: :cascade do |t|
     t.string "name"
@@ -20,9 +20,9 @@ ActiveRecord::Schema.define(version: 2021_07_21_070045) do
     t.boolean "athonme"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "user_id", null: false
     t.integer "type_id", null: false
     t.integer "recuperator_id", null: false
+    t.integer "user_id", null: false
     t.index ["recuperator_id"], name: "index_appointments_on_recuperator_id"
     t.index ["type_id"], name: "index_appointments_on_type_id"
     t.index ["user_id"], name: "index_appointments_on_user_id"
@@ -71,6 +71,7 @@ ActiveRecord::Schema.define(version: 2021_07_21_070045) do
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "totalWeight"
   end
 
   create_table "users", force: :cascade do |t|

@@ -1,25 +1,65 @@
-<h4>Citas: <%= current_user.name %></h4>
-<p>Numero de citas: <%= @appointments.count %></p>
-<% @appointments.each do |appointment| %>
-  <p>
-    <strong>Citas:</strong>
-    Nombre: <%= appointment.name %>,
-    Direccion: <%= appointment.adress %>,
-    Telefono: <%= appointment.phone %>,
-    tipo:  <%= appointment.type.name %>,
-    Fecha: <%= appointment.date %>,
-    Recogido: <%= appointment.athonme %>,
-    Recuperador: <%= appointment.recuperator.fullname %>
-    <% unless appointment.athonme  %>
-      <%= form_with model: appointment do |form| %>
-        <p>Recolector</p>
-        <%= form.select :recuperator, options_from_collection_for_select(Recuperator.all, :id, :fullname, "0"),{},
-                  { class: ""  }  %>
-        <br>
-        <%= form.submit "Asignar ", class: "" %>
-      <% end %>
-      <%= link_to "Confirmar recoleccion", admin_update_athome_path(appointment), method: :patch, data: { confirm: "¿Estas seguro?" } %>
-    <% end%>
-  </p>
-  <hr>
-<% end %>
+<div class="card mb-4 box-shadow">
+  <div class="card-body">
+    <h4>Usuario: <%=current_user.email %></h4>
+    <p>Numero de citas: <%= @appointments.count %></p>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Usuario</th>
+            <th scope="col">Direccion</th>
+            <th scope="col">Telefono</th>
+            <th scope="col">Tipo</th>
+            <th scope="col">Descripción</th>
+            <th scope="col">Fecha</th>
+            <th scope="col">Recogido</th>
+            <th scope="col">Recuperador</th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @appointments.each_with_index do |appointment, index| %>
+            <tr>
+              <th scope="row"><%=index + 1 %></th>
+              <td><%= appointment.user.email %></td>
+              <td><%= appointment.adress %></td>
+              <td><%= appointment.phone %></td>
+              <td><%= appointment.type.name %></td>
+              <td><%= appointment.name %></td>
+              <td><%= appointment.date %></td>
+              <td><%= if appointment.athonme then 'Si' else 'No' end %></td>
+              <td><%= appointment.recuperator.fullname %></td>
+              <td>
+              <% unless appointment.athonme  %>
+                <div class="row text-center">
+                  <div class="col">
+                    <%= form_with model: appointment do |form| %>
+                      <p>Recolector</p>
+                      <%= form.select :recuperator, options_from_collection_for_select( Recuperator.where(active: true), :id, :fullname, "0"),{},
+                        { class: "btn-sm dropdown-toggle",  onchange: 'this.form.submit()' } %>
+                      <br>
+                    <% end %>
+                  </div>
+                  <div class="col">
+                    <p>¿Confirmar?</p>
+                    <%= link_to admin_update_athome_path(appointment), method: :patch, data: { confirm: "¿Estas seguro?" } do%>
+                      <i class="fas fa-check-square fa-lg"></i>
+                    <% end %>
+                  </div>
+                </div>
+              <% else %>
+                <div class="row">
+                  <div class="col text-center">
+                    <p>Confirmado</p>
+                    <i class="fas fa-check-square fa-lg icon-ok"></i>
+                  </div>
+                </div>
+              <% end%>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </ol>
+  </div>
+</div>

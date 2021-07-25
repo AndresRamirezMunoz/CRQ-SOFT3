@@ -3,5 +3,14 @@
 .link {
   text-decoration: none ;
 }
+.icon-ok {
+  font-family:FontAwesome;
+   color:green;
+}
+
+.icon-not-ok {
+  font-family:FontAwesome;
+   color:black;
+}
 
 @import "~bootstrap/scss/bootstrap"

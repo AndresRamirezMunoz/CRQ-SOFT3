@@ -78,7 +78,9 @@
                   <% end %>
                 </li>
                 <li class="nav-item">
-                  <p class="text-white">Config</p>
+                  <%= link_to  edit_user_registration_path, class: "link" do %>
+                      <p class="text-white">Editar perfil&nbsp;&nbsp;</p>
+                  <% end %>
                 </li>
               </ul>
             <% end %>
@@ -110,6 +112,11 @@
         </div>
       </div>
     </nav>
+    <!--
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
+    -->
+
     <%= yield %>
   </body>
 </html>

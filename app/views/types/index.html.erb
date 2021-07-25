@@ -1,15 +1,36 @@
-<h4>Tipos</h4>
-<%= link_to new_type_path, class: "link" do %>
-  <p class="">Nuevo&nbsp;&nbsp;</p>
-<% end %>
-<!---->
-<% @types.each do |type| %>
-  <p>
-    Nombre: <%= type.name %>,
-    Actualizado el : <%= type.updated_at %>,
-    <%= link_to edit_type_path(type), class: "link" do %>
-      <p class="">Editar&nbsp;&nbsp;</p>
+<div class="card mb-4 box-shadow">
+  <div class="card-body">
+    <h4>Tipos</h4>
+    <p>Numero de citas: <%= @types.count %></p>
+    <%= link_to new_type_path, class: "link" do %>
+      &nbsp;&nbsp;<p class="btn btn-secondary">Agregar nuevo material</p>
     <% end %>
-    <hr>
-  </p>
-<% end %>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Total peso disponible</th>
+            <th scope="col">Fecha</th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @types.each_with_index do |types, index| %>
+            <tr>
+              <th scope="row"><%=index + 1 %></th>
+              <td><%= types.name %></td>
+              <td><%= types.totalWeight %></td>
+              <td><%= types.created_at %></td>
+              <td>
+                  <%= link_to edit_type_path(types), class: "link" do %>
+                    <i class="fas fa-pencil-alt fa-lg"></i>
+                  <% end %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </ol>
+  </div>
+</div>

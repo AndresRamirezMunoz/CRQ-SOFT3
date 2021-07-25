@@ -1,14 +1,46 @@
-<h4>Usuario: <%=current_user.email %></h4>
-<p>Numero de citas: <%= @appointments.count %></p>
-<% @appointments.each do |appointment| %>
-  <p>
-    <strong>Citas:</strong>
-    Nombre: <%= appointment.name %>,
-    Direccion: <%= appointment.adress %>,
-    Telefono: <%= appointment.phone %>,
-    tipo:  <%= appointment.type.name %>,
-    Fecha: <%= appointment.date %>,
-    Recogido: <%= appointment.athonme %>,
-    Recuperador: <%= appointment.recuperator.fullname %>
-  </p>
-<% end %>
+<div class="card mb-4 box-shadow">
+  <div class="card-body">
+    <h4>Usuario: <%=current_user.email %></h4>
+    <p>Numero de citas: <%= @appointments.count %></p>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Direccion</th>
+            <th scope="col">Descripción</th>
+            <th scope="col">Telefono</th>
+            <th scope="col">Tipo</th>
+            <th scope="col">Fecha</th>
+            <th scope="col">Recogido</th>
+            <th scope="col">Recuperador</th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @appointments.each_with_index do |appointment, index| %>
+
+            <tr>
+              <th scope="row"><%=index + 1 %></th>
+              <td><%= appointment.adress %></td>
+              <td><%= appointment.name %></td>
+              <td><%= appointment.phone %></td>
+              <td><%= appointment.type.name %></td>
+              <td><%= appointment.date %></td>
+              <td><%= if appointment.athonme then 'Si' else 'No' end %></td>
+              <td><%= appointment.recuperator.fullname %></td>
+              <td>
+                  <% if appointment.recuperator_id == Recuperator.first.id  %>
+                    <%= link_to edit_appointment_path(appointment), class: "link" do %>
+                      <i class="fas fa-pencil-alt fa-lg"></i>
+                    <% end %>
+                  <% end %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </ol>
+  </div>
+</div>
+
+

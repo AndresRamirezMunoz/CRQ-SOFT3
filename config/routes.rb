@@ -1,6 +1,12 @@
 Rails.application.routes.draw do
   get 'appointments/index'
-  devise_for :users
+  devise_for :users, controllers: {
+    confirmations: 'users/confirmations',
+    passwords: 'users/passwords',
+    registrations: 'users/registrations',
+    sessions: 'users/sessions',
+    unlocks: 'users/unlocks'
+  }
   root 'main#home'
 
   resources :appointments

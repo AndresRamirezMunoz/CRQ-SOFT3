@@ -1,4 +1,5 @@
 class TypesController < ApplicationController
+  before_action :authenticate_user!, except: %i[index show]
 
   def index
     @types = Type.all
@@ -10,6 +11,7 @@ class TypesController < ApplicationController
 
   def create
     @type = Type.new(type_params)
+    @type.totalWeight = 0
 
     if @type.save
       redirect_to types_path
@@ -33,6 +35,7 @@ class TypesController < ApplicationController
   end
 
   private
+
   def type_params
     params.require(:type).permit(:name)
   end
