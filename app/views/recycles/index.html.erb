@@ -1,16 +1,46 @@
-<h4>Reciclaje</h4>
-<%= link_to new_recycle_path, class: "link" do %>
-  <p class="">Nuevo&nbsp;&nbsp;</p>
-<% end %>
-<!---->
-<% @recycles.each do |recycle| %>
-  <p>
-    Peso: <%= recycle.weight %>,
-    Tipo: <%= recycle.type.name %>,
-    Recuperador : <%= recycle.recuperator.fullname %>
-    <%= link_to edit_recycle_path(recycle), class: "link" do %>
-      <p class="">Editar&nbsp;&nbsp;</p>
+<% if current_user.has_role? :admin %>
+<div class="card mb-4 box-shadow">
+  <div class="card-body">
+    <h4>Reciclaje: <%= @recycles.count %></h4>
+      <%= link_to new_recycle_path, class: "link" do %>
+        &nbsp;&nbsp;<p class="btn btn-secondary">Nuevo reciclaje</p>
     <% end %>
-    <hr>
-  </p>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Peso</th>
+            <th scope="col">Tipo</th>
+            <th scope="col">Recuperador</th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @recycles.each_with_index do |recycle, index| %>
+            <tr>
+              <th scope="row"><%=index + 1 %></th>
+              <td><%= recycle.weight %></td>
+              <td><%= recycle.type.name %></td>
+              <td><%= recycle.recuperator.nit %> - <%= recycle.recuperator.fullname %> </td>
+              <td>
+              <div class="row text-center">
+                <div class="col">
+                  <%= link_to edit_recycle_path(recycle), class: "link" do %>
+                    <i class="fas fa-pencil-alt fa-lg"></i>
+                  <% end %>
+                <div>
+                <div class="col">
+                  <%= link_to [recycle], method: :delete, data: { confirm: "¿Estas seguro?" } do%>
+                    <i class="far fa-trash-alt fa-lg"></i>
+                  <% end %>
+                <div>
+              <div>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </ol>
+  </div>
+</div>
 <% end %>

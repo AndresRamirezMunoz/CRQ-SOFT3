@@ -1,20 +1,37 @@
-<h4>Compradores</h4>
-<%= link_to new_buyer_path, class: "link" do %>
-  <p class="">Nuevo&nbsp;&nbsp;</p>
-<% end %>
-<!---->
-<% @buyers.each do |buyer| %>
-  <p>
-    Nombre: <%= buyer.name %>,
-    Teléfono: <%= buyer.phone %>,
-    Dirección: <%= buyer.adress%>
-  </p>
-  <ul>
-    <li>
-      <%= link_to edit_buyer_path(buyer), class: "link" do %>
-        <p class="">Editar&nbsp;&nbsp;</p>
-      <% end %>
-    </li>
-  </ul>
-  <hr>
+<% if current_user.has_role? :admin %>
+<div class="card mb-4 box-shadow">
+  <div class="card-body">
+    <h4>Compradores: <%= @buyers.count %></h4>
+      <%= link_to new_buyer_path, class: "link" do %>
+        &nbsp;&nbsp;<p class="btn btn-secondary">Nuevo comprador</p>
+    <% end %>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Telefono</th>
+            <th scope="col">Direccion</th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @buyers.each_with_index do |buyer, index| %>
+            <tr>
+              <th scope="row"><%=index + 1 %></th>
+              <td><%= buyer.name %></td>
+              <td><%= buyer.phone %></td>
+              <td><%= buyer.adress%></td>
+              <td>
+                <%= link_to edit_buyer_path(buyer), class: "link" do %>
+                  <i class="fas fa-pencil-alt fa-lg"></i>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </ol>
+  </div>
+</div>
 <% end %>

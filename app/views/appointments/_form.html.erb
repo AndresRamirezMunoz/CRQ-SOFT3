@@ -1,0 +1,44 @@
+  <%= form_with model: @appointment do |form| %>
+    <!---->
+    <div class="form-group">
+      <%= form.label :adress, "Direccion:" %>
+        <div class="col-md-12">
+          <%= form.text_field :adress, class: "form-control" %>
+        </div>
+    </div>
+    <br>
+    <!---->
+    <div class="form-group">
+      <%= form.label :phone, "Telefono:" %>
+        <div class="col-md-12">
+          <%= form.number_field :phone, class: "form-control" %>
+        </div>
+    </div>
+    <br>
+    <!---->
+    <div class="col-md-12">
+      <p>Tipo de material</p>
+      <%= form.select :type, options_from_collection_for_select(Type.all, :id, :name, "0" ),{}, {
+        class: "form-select form-select-sm" } %>
+    </div>
+    <br>
+    <!---->
+    <div class="form-group">
+      <%= form.label :name, "Describe lo que entregas:" %>
+        <div class="col-md-12">
+          <%= form.text_field :name, class: "form-control" %>
+        </div>
+    </div>
+    <br>
+    <!---->
+    <div class="row">
+      <div class="col-md-12 text-center">
+        <% if @appointment.name? %>
+          <%= form.submit "Actualizar ", class: "btn btn-default btn-secondary" %>
+        <% else %>
+          <%= form.submit "Crear ", class: "btn btn-default btn-secondary" %>
+        <% end %>
+      </div>
+    </div>
+    <% end %>
+

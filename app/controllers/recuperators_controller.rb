@@ -1,4 +1,6 @@
 class RecuperatorsController < ApplicationController
+  before_action :authenticate_user!, except: %i[index show]
+
   def index
     @recuperators = Recuperator.all
   end

@@ -2,16 +2,19 @@
   <div class="form-group">
     <%= form.label :nit, "Cédula:"%>
     <div class="col-md-12">
-      <%= form.text_field :nit, class: "form-control" %>
+      <%= form.number_field :nit, class: "form-control" %>
     </div>
-    <%= form.label :fullname, "Nombre:"%>
+    <br>
+    <%= form.label :fullname, "Nombre completo:"%>
     <div class="col-md-12">
       <%= form.text_field :fullname, class: "form-control" %>
     </div>
+    <br>
     <%= form.label :phone, "Teléfono:"%>
     <div class="col-md-12">
-      <%= form.text_field :phone, class: "form-control" %>
+      <%= form.number_field :phone, class: "form-control" %>
     </div>
+    <br>
     <%= form.label :adress, "Dirección:"%>
     <div class="col-md-12">
       <%= form.text_field :adress, class: "form-control" %>
