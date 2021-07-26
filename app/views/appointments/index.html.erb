@@ -1,3 +1,4 @@
+<% if current_user.has_role? :admin %>
 <div class="card mb-4 box-shadow">
   <div class="card-body">
     <h4>Usuario: <%=current_user.email %></h4>
@@ -18,15 +19,15 @@
           </tr>
         </thead>
         <tbody>
-          <% @appointments.each_with_index do |appointment, index| %>
+          <% @appointments.each do |appointment| %>
             <tr>
-              <th scope="row"><%=index + 1 %></th>
+              <th><%= appointment.id %></th>
               <td><%= appointment.user.email %></td>
               <td><%= appointment.adress %></td>
               <td><%= appointment.phone %></td>
               <td><%= appointment.type.name %></td>
               <td><%= appointment.name %></td>
-              <td><%= appointment.date %></td>
+              <td><%= appointment.date.strftime("%F")  %></td>
               <td><%= if appointment.athonme then 'Si' else 'No' end %></td>
               <td><%= appointment.recuperator.fullname %></td>
               <td>
@@ -42,8 +43,10 @@
                   </div>
                   <div class="col">
                     <p>¿Confirmar?</p>
-                    <%= link_to admin_update_athome_path(appointment), method: :patch, data: { confirm: "¿Estas seguro?" } do%>
-                      <i class="fas fa-check-square fa-lg"></i>
+                    <% if appointment.recuperator != Recuperator.first %>
+                      <%= link_to admin_update_athome_path(appointment), method: :patch, data: { confirm: "¿Estas seguro?" } do%>
+                        <i class="fas fa-check-square fa-lg"></i>
+                      <% end %>
                     <% end %>
                   </div>
                 </div>
@@ -60,6 +63,8 @@
           <% end %>
         </tbody>
       </table>
+      <%= paginate @appointments %>
     </ol>
   </div>
 </div>
+<% end %>

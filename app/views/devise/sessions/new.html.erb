@@ -21,17 +21,20 @@
               <% if devise_mapping.rememberable? %>
                 <div class="form-group">
                   <%= f.check_box :remember_me %>
-                    <%= f.label :remember_me %>
+                    <%= f.label :remember_me, 'Recuerdame'%>
                 </div>
               <% end %>
               <br>
               <div class="text-center">
-              <%= f.submit "Iniciar sesíon", class: 'btn btn-primary' %>
+              <%= f.submit "Iniciar sesíon", class: 'btn btn-secondary' %>
               </div>
               <br>
             <% end %>
+
              <div class="text-center">
+
             <%= render "devise/shared/links" %>
+
             </div>
           </div>
         </div>

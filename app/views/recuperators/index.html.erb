@@ -9,10 +9,8 @@
           <thead>
             <tr>
               <th scope="col">#</th>
-              <th scope="col">Cedula</th>
               <th scope="col">Nombre</th>
               <th scope="col">Telefono</th>
-              <th scope="col">Direccion</th>
               <th scope="col">¿Activo?</th>
               <th scope="col"></th>
             </tr>
@@ -21,12 +19,12 @@
             <% @recuperators.each_with_index do |recuperator, index| %>
               <tr>
                 <th scope="row"><%=index + 1 %></th>
-                <td><%= recuperator.nit %></td>
                 <td><%= recuperator.fullname %></td>
                 <td><%= recuperator.phone %></td>
-                <td><%= recuperator.adress%></td>
+
                 <% if recuperator.id != Recuperator.first.id %>
                   <td>
+
                     <% if recuperator.active %>
                       <%= link_to [recuperator], method: :delete, data: { confirm: "¿Estas seguro?" } do%>
                       <i class="fas fa-check-square fa-lg icon-ok"></i>

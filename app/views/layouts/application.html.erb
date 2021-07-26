@@ -11,52 +11,61 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
   </head>
   <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-lg navbar-dark nav-bar-crq">
       <div class="container-fluid">
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+          <a class="navbar-brand" href="#">
+            <img src="https://crq.gov.co/wp-content/uploads/2021/01/logo-crq-blanco-1.png"  height="40" alt="">
+          </a>
           <% unless signed_in? %>
-            <a class="navbar-brand" href="/">CRQ</a>
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <li class="nav-item">
-                <a class="nav-link active" href="/">Inicio</a>
+                <a class="nav-link active" href="#first">Inicio</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link active" href="/">Porque reciclar</a>
+                <a class="nav-link active" href="#second">Porque reciclar</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link active" href="/">Quiero reciclar</a>
+                <a class="nav-link active" href="#third">Quiero reciclar</a>
               </li>
             </ul>
           <% else %>
             <% if current_user.has_role? :admin %>
-              <a class="navbar-brand" href="#">Panel Admin</a>
               <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <!--
+              <li class="nav-item">
+                  <%= link_to root_path, class: "link" do %>
+                    <h5 class="text-white">Panel Admin &nbsp;&nbsp;</h5>
+                  <% end %>
+                </li>
+              -->
+
                 <li class="nav-item">
                   <%= link_to recuperators_path, class: "link" do %>
-                    <p class="text-white">Recuperadores &nbsp;&nbsp;</p>
+                    <h5 class="text-white">Recuperadores &nbsp;&nbsp;&nbsp;</h5>
                   <% end %>
                 </li>
                 <li class="nav-item">
                   <%= link_to buyers_path, class: "link" do %>
-                    <p class="text-white">Compradores &nbsp;&nbsp;</p>
+                    <h5 class="text-white">Compradores &nbsp;&nbsp;&nbsp;</h5>
                   <% end %>
                 </li>
                 <li class="nav-item">
                   <%= link_to recycles_path, class: "link" do %>
-                    <p class="text-white">Reciclaje &nbsp;&nbsp;</p>
+                    <h5 class="text-white">Reciclaje &nbsp;&nbsp;&nbsp;</h5>
                   <% end %>
                 </li>
                 <li class="nav-item">
                   <%= link_to types_path, class: "link" do %>
-                    <p class="text-white">Materiales &nbsp;&nbsp;</p>
+                    <h5 class="text-white">Materiales &nbsp;&nbsp;&nbsp;</h5>
                   <% end %>
                 </li>
                 <li class="nav-item">
                   <%= link_to appointments_path, class: "link" do %>
-                    <p class="text-white">Citas &nbsp;&nbsp;</p>
+                    <h5 class="text-white">Citas &nbsp;&nbsp;&nbsp;</h5>
                   <% end %>
                 </li>
                 <li class="nav-item">
@@ -65,21 +74,28 @@
               </ul>
               <!---->
             <% else %>
-              <a class="navbar-brand" href="#">Panel Usuario</a>
               <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <!--
+                <li class="nav-item">
+                  <%= link_to root_path, class: "link" do %>
+                    <h5 class="text-white">Panel Usuario &nbsp;&nbsp;</h5>
+                  <% end %>
+                </li>
+                -->
+
                 <li class="nav-item">
                   <%= link_to user_appointment_path(current_user), class: "link" do %>
-                    <p class="text-white">Mis aportes &nbsp;&nbsp;</p>
+                    <h5 class="text-white">Mis aportes&nbsp;&nbsp;&nbsp;</h5>
                   <% end %>
                 </li>
                 <li class="nav-item">
                   <%= link_to new_appointment_path, class: "link" do %>
-                    <p class="text-white">Agendar&nbsp;&nbsp;</p>
+                    <h5 class="text-white">Agendar&nbsp;&nbsp;&nbsp;</h5>
                   <% end %>
                 </li>
                 <li class="nav-item">
                   <%= link_to  edit_user_registration_path, class: "link" do %>
-                      <p class="text-white">Editar perfil&nbsp;&nbsp;</p>
+                      <h5 class="text-white">Editar Perfil&nbsp;&nbsp;&nbsp;</h5>
                   <% end %>
                 </li>
               </ul>
@@ -113,8 +129,8 @@
       </div>
     </nav>
     <!--
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+    <h5 class="notice"><%= notice %></h5>
+    <h5 class="alert"><%= alert %></h5>
     -->
 
     <%= yield %>

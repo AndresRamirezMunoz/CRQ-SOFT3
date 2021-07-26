@@ -1,9 +1,9 @@
 class AppointmentsController < ApplicationController
-
-  before_action :authenticate_user!, except: [:index, :show]
+  before_action :authenticate_user!, except: %i[index show]
 
   def index
-    @appointments = Appointment.all
+    @appointments = Appointment.all.order(created_at: :desc).page params[:page]
+    @appointments.sort { |a, b| a.created_at <=> b.created_at }
   end
 
   def show
@@ -11,7 +11,8 @@ class AppointmentsController < ApplicationController
   end
 
   def show_by_user
-    @appointments = current_user.appointments.sort_by
+    @appointments = current_user.appointments.order(created_at: :desc).page params[:page]
+    @appointments.sort { |a, b| a.created_at <=> b.created_at }
   end
 
   def edit
@@ -73,6 +74,13 @@ class AppointmentsController < ApplicationController
     else
       render :new
     end
+  end
+
+  def destroy
+    @appointment = Appointment.find(params[:id])
+    @appointment.destroy
+
+    redirect_to user_appointment_path(current_user)
   end
 
   private

@@ -1,3 +1,4 @@
+<% if current_user.has_role? :admin %>
 <div class="card mb-4 box-shadow">
   <div class="card-body">
     <h4>Tipos</h4>
@@ -34,3 +35,4 @@
     </ol>
   </div>
 </div>
+<% end %>

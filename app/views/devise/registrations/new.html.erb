@@ -21,7 +21,7 @@
                 <!---->
                 <div class="form-group">
                   <%= f.label :phone, 'Telefono' %><br />
-                    <%= f.text_field :phone, autofocus: true, class: 'form-control' %>
+                    <%= f.number_field :phone, autofocus: true, class: 'form-control' %>
                 </div>
                 <!---->
                 <div class="form-group">
@@ -44,7 +44,7 @@
                 <!---->
                 <br>
                 <div class="form-group text-center  ">
-                  <%= f.submit "Registrarse" , class: 'btn btn-primary' %>
+                  <%= f.submit "Registrarse" , class: 'btn btn-secondary' %>
                 </div>
               <% end %>
               <!---->
